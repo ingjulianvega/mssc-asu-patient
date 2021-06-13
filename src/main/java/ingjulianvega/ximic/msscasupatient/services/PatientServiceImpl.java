@@ -26,9 +26,9 @@ public class PatientServiceImpl implements PatientService {
     private final DateMapper dateMapper;
 
 
-    @Cacheable(cacheNames = "patientListCache")
+    @Cacheable(cacheNames = "patientListCache", condition = "#usingCache == false")
     @Override
-    public PatientList get() {
+    public PatientList get(Boolean usingCache) {
         log.debug("get()...");
         return PatientList
                 .builder()

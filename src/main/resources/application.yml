@@ -24,7 +24,7 @@ spring:
       config: classpath:ehcache.xml
   #Zipkin
   zipkin:
-    enabled: false
+    baseUrl: http://localhost:9411/
 #General configuration
 server:
   port: 8107
@@ -37,6 +37,11 @@ logging:
 #Exceptions
 patient:
   success: The operation was successful.
-  prefix: 'API-COMP:'
+  prefix: 'PATIENT'
   error:
     general: There was an unexpected error. Please try again.
+#Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://netflix:eureka@localhost:8761/eureka

@@ -8,7 +8,7 @@ import ingjulianvega.ximic.msscasupatient.web.model.PatientList;
 import java.util.UUID;
 
 public interface PatientService {
-    PatientList get();
+    PatientList get(Boolean usingCache);
 
     PatientDto getById(UUID id);
 
