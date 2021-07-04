@@ -28,6 +28,7 @@ public class PatientDto implements Serializable {
     private String email;
     private OffsetDateTime birthDate;
     private String hand;
+    private String bloodType;
     private String address;
     private UUID maritalStatusId;
     private UUID genderId;

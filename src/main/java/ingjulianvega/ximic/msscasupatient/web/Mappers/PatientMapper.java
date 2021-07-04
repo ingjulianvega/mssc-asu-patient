@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mapper(uses = DateMapper.class)
+@Mapper(uses = {DateMapper.class})
 public interface PatientMapper {
     PatientDto patientEntityToPatientDto(PatientEntity patientEntity);
 

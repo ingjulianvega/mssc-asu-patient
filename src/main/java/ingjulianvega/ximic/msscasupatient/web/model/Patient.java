@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -27,6 +28,8 @@ public class Patient implements Serializable {
     private String email;
     private OffsetDateTime birthDate;
     private String hand;
+    @Pattern(regexp = "O\\+|O-|A\\+|A-|B\\+|AB\\+|AB-", flags = Pattern.Flag.CASE_INSENSITIVE)
+    private String bloodType;
     private String address;
     private UUID maritalStatusId;
     private UUID genderId;

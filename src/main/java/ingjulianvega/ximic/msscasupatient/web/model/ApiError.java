@@ -9,6 +9,10 @@ import lombok.*;
 @Builder
 public class ApiError {
 
+    private String status;
+    private String api;
     private String code;
-    private String description;
+    private String message;
+    private String solution;
+
 }

@@ -78,6 +78,7 @@ public class PatientServiceImpl implements PatientService {
                                         .secondLastName(patient.getSecondLastName())
                                         .birthDate(patient.getBirthDate())
                                         .hand(patient.getHand())
+                                        .bloodType(patient.getBloodType())
                                         .address(patient.getAddress())
                                         .maritalStatusId(patient.getMaritalStatusId())
                                         .genderId(patient.getGenderId())
@@ -93,27 +94,28 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public void updateById(UUID id, Patient patient) {
         log.debug("updateById...");
-        PatientEntity companionEntity = patientRepository.findById(id)
+        PatientEntity patientEntity = patientRepository.findById(id)
                 .orElseThrow(() -> new PatientException(ErrorCodeMessages.PATIENT_NOT_FOUND, ""));
 
-        companionEntity.setDocumentTypeId(patient.getDocumentTypeId());
-        companionEntity.setDocumentNumber(patient.getDocumentNumber());
-        companionEntity.setName(patient.getName());
-        companionEntity.setFirstLastName(patient.getFirstLastName());
-        companionEntity.setSecondLastName(patient.getSecondLastName());
-        companionEntity.setBirthDate(dateMapper.asTimestamp(patient.getBirthDate()));
-        companionEntity.setHand(patient.getHand());
-        companionEntity.setAddress(patient.getAddress());
-        companionEntity.setMaritalStatusId(patient.getMaritalStatusId());
-        companionEntity.setGenderId(patient.getGenderId());
-        companionEntity.setOccupationId(patient.getOccupationId());
-        companionEntity.setHomePhone(patient.getHomePhone());
-        companionEntity.setMobilePhone(patient.getMobilePhone());
-        companionEntity.setEpsId(patient.getEpsId());
-        companionEntity.setArlId(patient.getArlId());
-        companionEntity.setEmail(patient.getEmail());
+        patientEntity.setDocumentTypeId(patient.getDocumentTypeId());
+        patientEntity.setDocumentNumber(patient.getDocumentNumber());
+        patientEntity.setName(patient.getName());
+        patientEntity.setFirstLastName(patient.getFirstLastName());
+        patientEntity.setSecondLastName(patient.getSecondLastName());
+        patientEntity.setBirthDate(dateMapper.asTimestamp(patient.getBirthDate()));
+        patientEntity.setHand(patient.getHand());
+        patientEntity.setBloodType(patient.getBloodType().toString());
+        patientEntity.setAddress(patient.getAddress());
+        patientEntity.setMaritalStatusId(patient.getMaritalStatusId());
+        patientEntity.setGenderId(patient.getGenderId());
+        patientEntity.setOccupationId(patient.getOccupationId());
+        patientEntity.setHomePhone(patient.getHomePhone());
+        patientEntity.setMobilePhone(patient.getMobilePhone());
+        patientEntity.setEpsId(patient.getEpsId());
+        patientEntity.setArlId(patient.getArlId());
+        patientEntity.setEmail(patient.getEmail());
 
-        patientRepository.save(companionEntity);
+        patientRepository.save(patientEntity);
     }
 
     @Override

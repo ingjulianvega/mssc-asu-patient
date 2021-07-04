@@ -48,6 +48,9 @@ public class PatientEntity extends BaseEntity {
     @Column(length = 15, columnDefinition = "varchar(15)")
     private String hand;
 
+    @Column(length = 15, columnDefinition = "varchar(15)")
+    private String bloodType;
+
     @Column(length = 100, columnDefinition = "varchar(100)")
     private String address;
 
