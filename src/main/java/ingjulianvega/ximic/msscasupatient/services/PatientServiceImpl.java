@@ -42,7 +42,10 @@ public class PatientServiceImpl implements PatientService {
         log.debug("getById()...");
         return patientMapper.patientEntityToPatientDto(
                 patientRepository.findById(id)
-                        .orElseThrow(() -> new PatientException(ErrorCodeMessages.PATIENT_NOT_FOUND, "")));
+                        .orElseThrow(() -> new PatientException(ErrorCodeMessages.PATIENT_NOT_FOUND_STATUS,
+                                ErrorCodeMessages.PATIENT_NOT_FOUND_CODE,
+                                ErrorCodeMessages.PATIENT_NOT_FOUND_MESSAGE,
+                                ErrorCodeMessages.PATIENT_NOT_FOUND_SOLUTION)));
     }
 
     @Override
@@ -95,7 +98,10 @@ public class PatientServiceImpl implements PatientService {
     public void updateById(UUID id, Patient patient) {
         log.debug("updateById...");
         PatientEntity patientEntity = patientRepository.findById(id)
-                .orElseThrow(() -> new PatientException(ErrorCodeMessages.PATIENT_NOT_FOUND, ""));
+                .orElseThrow(() -> new PatientException(ErrorCodeMessages.PATIENT_NOT_FOUND_STATUS,
+                        ErrorCodeMessages.PATIENT_NOT_FOUND_CODE,
+                        ErrorCodeMessages.PATIENT_NOT_FOUND_MESSAGE,
+                        ErrorCodeMessages.PATIENT_NOT_FOUND_SOLUTION));
 
         patientEntity.setDocumentTypeId(patient.getDocumentTypeId());
         patientEntity.setDocumentNumber(patient.getDocumentNumber());

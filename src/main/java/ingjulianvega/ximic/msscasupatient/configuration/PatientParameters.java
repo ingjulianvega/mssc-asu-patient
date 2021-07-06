@@ -12,9 +12,8 @@ import org.springframework.stereotype.Component;
 public class PatientParameters {
 
     private String success;
-    private String prefix;
+    private String api;
     private Error error;
-    private String channelId;
 
     @Getter
     @Setter

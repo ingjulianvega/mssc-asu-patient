@@ -37,7 +37,7 @@ logging:
 #Exceptions
 patient:
   success: The operation was successful.
-  prefix: 'PATIENT'
+  api: @artifactId@
   error:
     general: There was an unexpected error. Please try again.
 #Eureka
