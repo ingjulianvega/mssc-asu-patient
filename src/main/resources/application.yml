@@ -37,7 +37,7 @@ logging:
 #Exceptions
 patient:
   success: The operation was successful.
-  api: @artifactId@
+  api: LOQUESEA
   error:
     general: There was an unexpected error. Please try again.
 #Eureka

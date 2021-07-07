@@ -2,15 +2,17 @@ package ingjulianvega.ximic.msscasupatient.exception;
 
 import ingjulianvega.ximic.msscasupatient.configuration.PatientParameters;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PatientException extends RuntimeException {
+public class PatientException {
 
-    PatientParameters patientParameters;
+    @Autowired
+    private PatientParameters patientParameters;
 
     private String status;
     private String api;
@@ -23,8 +25,8 @@ public class PatientException extends RuntimeException {
                             final String message,
                             final String solution
                             ) {
-        super(message);
-        this.api = patientParameters.getApi();
+        this.message = message;
+        this.api = "mssc-asu-patient";
         this.status = status;
         this.code = code;
         this.solution = solution;
