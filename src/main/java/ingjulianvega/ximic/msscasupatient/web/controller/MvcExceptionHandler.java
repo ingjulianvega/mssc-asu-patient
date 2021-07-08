@@ -12,15 +12,16 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class MvcExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(PatientException.class)
-    public ResponseEntity<Object> validationErrorHandler(PatientException ex){
+    public ResponseEntity<ApiError> validationErrorHandler(PatientException ex) {
         ApiError apiError = ApiError
-                            .builder()
-                            .api("mssc-asu-patient")
-                            .status(ex.getStatus())
-                            .code(ex.getCode())
-                            .message(ex.getMessage())
-                            .solution(ex.getSolution())
-                            .build();
-        return ResponseEntity.status(HttpStatus.valueOf(ex.getStatus())).body(apiError);
+                .builder()
+                .api("mssc-asu-patient")
+                .status(ex.getStatus())
+                .code(ex.getCode())
+                .message(ex.getMessage())
+                .solution(ex.getSolution())
+                .build();
+        ResponseEntity<ApiError> responseEntity = new ResponseEntity<>(apiError, ex.getStatus());
+        return responseEntity;
     }
 }

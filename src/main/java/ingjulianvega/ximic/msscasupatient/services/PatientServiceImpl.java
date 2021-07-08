@@ -12,6 +12,7 @@ import ingjulianvega.ximic.msscasupatient.web.model.PatientList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -42,7 +43,7 @@ public class PatientServiceImpl implements PatientService {
         log.debug("getById()...");
         return patientMapper.patientEntityToPatientDto(
                 patientRepository.findById(id)
-                        .orElseThrow(() -> new PatientException(ErrorCodeMessages.PATIENT_NOT_FOUND_STATUS,
+                        .orElseThrow(() -> new PatientException(HttpStatus.BAD_REQUEST,
                                 ErrorCodeMessages.PATIENT_NOT_FOUND_CODE,
                                 ErrorCodeMessages.PATIENT_NOT_FOUND_MESSAGE,
                                 ErrorCodeMessages.PATIENT_NOT_FOUND_SOLUTION)));
@@ -98,7 +99,7 @@ public class PatientServiceImpl implements PatientService {
     public void updateById(UUID id, Patient patient) {
         log.debug("updateById...");
         PatientEntity patientEntity = patientRepository.findById(id)
-                .orElseThrow(() -> new PatientException(ErrorCodeMessages.PATIENT_NOT_FOUND_STATUS,
+                .orElseThrow(() -> new PatientException(HttpStatus.BAD_REQUEST,
                         ErrorCodeMessages.PATIENT_NOT_FOUND_CODE,
                         ErrorCodeMessages.PATIENT_NOT_FOUND_MESSAGE,
                         ErrorCodeMessages.PATIENT_NOT_FOUND_SOLUTION));

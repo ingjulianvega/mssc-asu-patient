@@ -1,6 +1,7 @@
 package ingjulianvega.ximic.msscasupatient.web.model;
 
 import lombok.*;
+import org.springframework.http.HttpStatus;
 
 @Getter
 @Setter
@@ -9,7 +10,9 @@ import lombok.*;
 @Builder
 public class ApiError {
 
-    private String status;
+    private HttpStatus status;
+    //TODO Agregar timestamp
+    //TODO agregar codigo personalizado
     private String api;
     private String code;
     private String message;
