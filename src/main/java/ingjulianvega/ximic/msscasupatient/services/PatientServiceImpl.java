@@ -43,10 +43,14 @@ public class PatientServiceImpl implements PatientService {
         log.debug("getById()...");
         return patientMapper.patientEntityToPatientDto(
                 patientRepository.findById(id)
-                        .orElseThrow(() -> new PatientException(HttpStatus.BAD_REQUEST,
-                                ErrorCodeMessages.PATIENT_NOT_FOUND_CODE,
-                                ErrorCodeMessages.PATIENT_NOT_FOUND_MESSAGE,
-                                ErrorCodeMessages.PATIENT_NOT_FOUND_SOLUTION)));
+                        .orElseThrow(() -> PatientException
+                                .builder()
+                                .httpStatus(HttpStatus.BAD_REQUEST)
+                                .apiCode(ErrorCodeMessages.PATIENT_NOT_FOUND_API_CODE)
+                                .error(ErrorCodeMessages.PATIENT_NOT_FOUND_ERROR)
+                                .message(ErrorCodeMessages.PATIENT_NOT_FOUND_MESSAGE)
+                                .solution(ErrorCodeMessages.PATIENT_NOT_FOUND_SOLUTION)
+                                .build()));
     }
 
     @Override
@@ -99,10 +103,15 @@ public class PatientServiceImpl implements PatientService {
     public void updateById(UUID id, Patient patient) {
         log.debug("updateById...");
         PatientEntity patientEntity = patientRepository.findById(id)
-                .orElseThrow(() -> new PatientException(HttpStatus.BAD_REQUEST,
-                        ErrorCodeMessages.PATIENT_NOT_FOUND_CODE,
-                        ErrorCodeMessages.PATIENT_NOT_FOUND_MESSAGE,
-                        ErrorCodeMessages.PATIENT_NOT_FOUND_SOLUTION));
+                .orElseThrow(() -> PatientException
+                        .builder()
+                        .httpStatus(HttpStatus.BAD_REQUEST)
+                        .apiCode(ErrorCodeMessages.PATIENT_NOT_FOUND_API_CODE)
+                        .error(ErrorCodeMessages.PATIENT_NOT_FOUND_ERROR)
+                        .message(ErrorCodeMessages.PATIENT_NOT_FOUND_MESSAGE)
+                        .solution(ErrorCodeMessages.PATIENT_NOT_FOUND_SOLUTION)
+                        .build()
+                        );
 
         patientEntity.setDocumentTypeId(patient.getDocumentTypeId());
         patientEntity.setDocumentNumber(patient.getDocumentNumber());

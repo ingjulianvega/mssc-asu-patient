@@ -19,6 +19,7 @@ public class Patient implements Serializable {
     static final long serialVersionUID = 1450690712037268848L;
 
     private UUID documentTypeId;
+
     private String documentNumber;
     private String name;
     private String firstLastName;
