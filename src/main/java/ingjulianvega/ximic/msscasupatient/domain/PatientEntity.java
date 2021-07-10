@@ -8,6 +8,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -17,6 +19,7 @@ import java.util.UUID;
 @Builder
 @Entity
 public class PatientEntity extends BaseEntity {
+
 
     @Type(type = "org.hibernate.type.UUIDCharType")
     @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)

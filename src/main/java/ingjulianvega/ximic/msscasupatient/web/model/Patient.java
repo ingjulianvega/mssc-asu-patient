@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -19,7 +20,7 @@ public class Patient implements Serializable {
     static final long serialVersionUID = 1450690712037268848L;
 
     private UUID documentTypeId;
-
+    @NotBlank
     private String documentNumber;
     private String name;
     private String firstLastName;
