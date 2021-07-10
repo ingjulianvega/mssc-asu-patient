@@ -26,12 +26,15 @@ public class PatientEntity extends BaseEntity {
     private UUID documentTypeId;
 
     @Column(length = 15, columnDefinition = "varchar(15)", nullable = false)
+    @NotNull
     private String documentNumber;
 
     @Column(length = 50, columnDefinition = "varchar(50)", nullable = false)
+    @NotNull
     private String name;
 
     @Column(length = 50, columnDefinition = "varchar(50)", nullable = false)
+    @NotNull
     private String firstLastName;
 
     @Column(length = 50, columnDefinition = "varchar(50)")
@@ -46,19 +49,21 @@ public class PatientEntity extends BaseEntity {
     @Column(length = 50, columnDefinition = "varchar(50)")
     private String email;
 
+    @NotNull
     private Timestamp birthDate;
 
     @Column(length = 15, columnDefinition = "varchar(15)")
+    @NotNull
     private String hand;
 
     @Column(length = 15, columnDefinition = "varchar(15)")
+    @NotNull
     private String bloodType;
 
     @Column(length = 100, columnDefinition = "varchar(100)")
     private String address;
 
     @Type(type = "org.hibernate.type.UUIDCharType")
-    @Column(length = 36, columnDefinition = "varchar(36)", nullable = false)
     private UUID maritalStatusId;
 
     @Type(type = "org.hibernate.type.UUIDCharType")
