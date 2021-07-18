@@ -31,13 +31,13 @@ server:
   servlet:
     context-path: /asu/v1/patient
 #Logging
-logging:
-  level:
-    root: DEBUG
+#logging:
+#  level:
+#    root: DEBUG
 #Exceptions
 patient:
   success: The operation was successful.
-  api: LOQUESEA
+  api: @artifactId@
   error:
     general: There was an unexpected error. Please try again.
 #Eureka

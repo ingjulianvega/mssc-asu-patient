@@ -1,7 +1,7 @@
-package ingjulianvega.ximic.msscasupatient.web.controller;
+package ingjulianvega.ximic.msscasupatient.exception;
 
 import ingjulianvega.ximic.msscasupatient.configuration.ErrorCodeMessages;
-import ingjulianvega.ximic.msscasupatient.exception.PatientException;
+import ingjulianvega.ximic.msscasupatient.configuration.PatientParameters;
 import ingjulianvega.ximic.msscasupatient.web.model.ApiError;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,28 +13,32 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @ControllerAdvice
 public class MvcExceptionHandler extends ResponseEntityExceptionHandler {
 
+    public MvcExceptionHandler(PatientParameters patientParameters) {
+        this.patientParameters = patientParameters;
+    }
+
+    PatientParameters patientParameters;
+
+
     @ExceptionHandler(PatientException.class)
-    public ResponseEntity<ApiError> validationErrorHandler(PatientException pe) {
+    public ResponseEntity<ApiError> validationErrorHandler(PatientException ame) {
         ApiError apiError = ApiError
                 .builder()
                 .timestamp(LocalDateTime.now())
-                .api("mssc-asu-patient")
-                .apiCode(pe.getApiCode())
-                .error(pe.getError())
-                .message(pe.getMessage())
-                .solution(pe.getSolution())
+                .api(patientParameters.getApi())
+                .apiCode(ame.getApiCode())
+                .error(ame.getError())
+                .message(ame.getMessage())
+                .solution(ame.getSolution())
                 .build();
-         return new ResponseEntity<>(apiError, pe.getHttpStatus());
+         return new ResponseEntity<>(apiError, ame.getHttpStatus());
     }
 
     @Override
@@ -51,7 +55,7 @@ public class MvcExceptionHandler extends ResponseEntityExceptionHandler {
         ApiError apiError = ApiError
                 .builder()
                 .timestamp(LocalDateTime.now())
-                .api("mssc-asu-patient")
+                .api(patientParameters.getApi())
                 .apiCode(ErrorCodeMessages.ARGUMENT_NOT_VALID_API_CODE)
                 .error(ErrorCodeMessages.ARGUMENT_NOT_VALID_ERROR)
                 .message(errors.toString())
